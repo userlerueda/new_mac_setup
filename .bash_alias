@@ -1,4 +1,8 @@
 # Aliases
 
-alias ll="ls -l"
+alias ll="ls -ltr"
 alias gbpurge='git branch --merged | grep -Ev "(\*|master|develop|staging)" | xargs -n 1 git branch -d'
+alias clean_config='egrep -v "(^#.*|^$)"'
+alias tw='open -a /Applications/TextWrangler.app'
+alias mtr='mtr --o "L SRD NABWV IMXI" --show-ips'
+alias clear_dns='sudo killall -HUP mDNSResponder'
