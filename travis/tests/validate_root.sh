@@ -12,5 +12,12 @@ __dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 __file="${__dir}/$(basename "${BASH_SOURCE[0]}")"
 __base="$(basename ${__file} .sh)"
 
-# Validate correct files on root.
-ls -l ${__dir}/../../
+# Validate README.md exists
+if [ -e ${__dir}/../../README.md ]
+then
+   echo "README.md exists, everything Ok so far"
+else
+   echo "README.md does not exists, failing"
+   exit 1
+fi
+#ls -1a ${__dir}/../../ | grep -v "^.$" | grep -v "^..$"
