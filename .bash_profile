@@ -1,4 +1,3 @@
-export PATH="/Users/lurueda/Library/Application Support/GoodSync":$PATH
 ##
 # Your previous /Users/lurueda/.bash_profile file was backed up as /Users/lurueda/.bash_profile.macports-saved_2014-03-12_at_23:59:54
 ##
