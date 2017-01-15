@@ -1,5 +1,5 @@
 .PHONY: all test clean
 
 test:
-  test/validate_root.sh
-  test/validate_travis.sh
+  tests/validate_root.sh
+  tests/validate_travis.sh
