@@ -1,6 +1,8 @@
-bash_profile
-============
+New macOS Setup
+===============
 
-Bash Profile for my OS X machines
+This repository will provide everything necessary to setup and get a new macOS going from scratch
 
-THe intention of this repository is to keep all the files required for OS X's bash profile to be able to state color and to add the status of the git branch being used.
+Author
+======
+Luis Rueda <userlerueda@gmail.com>
