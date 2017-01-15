@@ -13,4 +13,4 @@ __file="${__dir}/$(basename "${BASH_SOURCE[0]}")"
 __base="$(basename ${__file} .sh)"
 
 # Validate correct files on root.
-echo ${__dir}
+ls -l ${__dir}/../../
