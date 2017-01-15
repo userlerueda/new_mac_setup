@@ -24,6 +24,6 @@ mv ~/.bash_git ~/.bash_git.BAK.${TIMESTAMP}
 mv ~/.bash_profile ~/.bash_git.BAK.${TIMESTAMP}
 mv ~/.bash_alias ~/.bash_git.BAK.${TIMESTAMP}
 ${LOGGER} " | INFO | Copying new files"
-rsync -v .bash_git ~/
-rsync -v .bash_profile ~/
-rsync -v .bash_alias ~/
+rsync .bash_git ~/
+rsync .bash_profile ~/
+rsync .bash_alias ~/
