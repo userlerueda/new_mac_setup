@@ -32,6 +32,24 @@ from datetime import datetime
 SCREEN_LOGGING_LEVEL = logging.INFO
 
 def file_exists(dir, filename):
+    """
+    Checks if a file exists
+
+    file_exists function checks if a given file exists in a specific directory
+
+    Parameters
+    ----------
+    dir : str
+        Directory specified from the current working directory
+    filename : str
+        Filename to be inspected in directory, it is case insensitive
+
+    Returns
+    -------
+    boolean
+        True if file exists
+        False if file does not exist
+    """
     top_level_dir = dir
     files = [f for f in os.listdir(top_level_dir) if os.path.isfile(os.path.join(top_level_dir, f))]
     files = [element.lower() for element in files]
@@ -42,6 +60,16 @@ def file_exists(dir, filename):
         return False
 
 def main(args):
+    """
+    main program
+
+    executes main program
+
+    Parameters
+    ----------
+    args : list
+        list of args parsed by the script when executed
+    """
     if args["validate"]:
         if args["root"] or args["all"]:
             if not file_exists("./", "README.md"):
