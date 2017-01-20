@@ -17,15 +17,16 @@ arg1="${1:-}"
 
 # Installer starts here
 TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
-LOGGER=echo
-${LOGGER} " | INFO | Backing up files..."
-${LOGGER} " | INFO | A copy of your current files will be stored in ~/ with the extension .BAK.${TIMESTAMP}."
+LOGGER="echo $(date +"%Y-%m-%d %H:%M") "
+LOGGER_INFO="echo $(date +"%Y-%m-%d %H:%M") | INFO | "
+${LOGGER_INFO} "Backing up files..."
+${LOGGER_INFO} "A copy of your current files will be stored in ~/ with the extension .BAK.${TIMESTAMP}."
 mv ~/.bash_git ~/.bash_git.BAK.${TIMESTAMP}
 mv ~/.bash_profile ~/.bash_git.BAK.${TIMESTAMP}
 mv ~/.bash_alias ~/.bash_git.BAK.${TIMESTAMP}
-${LOGGER} " | INFO | Done backing up files."
-${LOGGER} " | INFO | Copying new files..."
+${LOGGER_INFO} "Done backing up files."
+${LOGGER_INFO} "Copying new files..."
 rsync .bash_git ~/
 rsync .bash_profile ~/
 rsync .bash_alias ~/
-${LOGGER} " | INFO | Done copying new files."
+${LOGGER_INFO} "Done copying new files."
