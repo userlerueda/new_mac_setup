@@ -86,7 +86,7 @@ def main(args):
             logger.info("travis tests OK")
 
     if args["display"] and args["top-level-dir"]:
-        print(str(datetime.now().strftime('%Y-%m-%d %H:%M:%S,%f')[:-3]) + " - STDOUT - " + os.getcwd())
+        print(str(datetime.now().strftime('%Y-%m-%d %H:%M:%S')[:-3]) + " - STDOUT - " + os.getcwd())
 
 if __name__ == "__main__":
     # Setup the Logger
