@@ -21,9 +21,21 @@ LOGGER="echo $(date +"%Y-%m-%d %H:%M") "
 LOGGER_INFO="echo $(date +"%Y-%m-%d %H:%M") | INFO | "
 ${LOGGER_INFO} "Backing up files..."
 ${LOGGER_INFO} "A copy of your current files will be stored in ~/ with the extension .BAK.${TIMESTAMP}."
-mv ~/.bash_git ~/.bash_git.BAK.${TIMESTAMP}
-mv ~/.bash_profile ~/.bash_git.BAK.${TIMESTAMP}
-mv ~/.bash_alias ~/.bash_git.BAK.${TIMESTAMP}
+if [ -e ~/.bash_git ]
+then
+   mv ~/.bash_git ~/.bash_git.BAK.${TIMESTAMP}
+fi
+
+if [ -e ~/.bash_profile ]
+then
+   mv ~/.bash_profile ~/.bash_git.BAK.${TIMESTAMP}
+fi
+
+if [ -e ~/.bash_alias ]
+then
+   mv ~/.bash_alias ~/.bash_git.BAK.${TIMESTAMP}
+fi
+
 ${LOGGER_INFO} "Done backing up files."
 ${LOGGER_INFO} "Copying new files..."
 rsync .bash_git ~/
