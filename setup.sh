@@ -45,8 +45,6 @@ ${LOGGER} "Executing ansible playbook"
 cd ansible
 ansible-playbook main.yml
 exit 0
-${LOGGER_INFO} "Backing up files..."
-${LOGGER_INFO} "A copy of your current files will be stored in ~/ with the extension .BAK.${TIMESTAMP}."
 if [ -e ~/.bash_git ]
 then
    mv ~/.bash_git ~/.bash_git.BAK.${TIMESTAMP}
@@ -57,14 +55,5 @@ then
    mv ~/.bash_profile ~/.bash_git.BAK.${TIMESTAMP}
 fi
 
-if [ -e ~/.bash_alias ]
-then
-   mv ~/.bash_alias ~/.bash_git.BAK.${TIMESTAMP}
-fi
-
-${LOGGER_INFO} "Done backing up files."
-${LOGGER_INFO} "Copying new files..."
 rsync .bash_git ~/
 rsync .bash_profile ~/
-rsync .bash_alias ~/
-${LOGGER_INFO} "Done copying new files."

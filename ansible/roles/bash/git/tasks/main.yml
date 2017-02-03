@@ -1,0 +1,8 @@
+---
+
+- name: Copy "{{ bash_git }}" file to {{ home_dir }}
+  copy:
+    src: files/{{ bash_git }}
+    dest: "{{ home_dir }}{{ bash_git }}"
+  tags:
+    - git
