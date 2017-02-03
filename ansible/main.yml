@@ -4,6 +4,7 @@
   gather_facts: yes
   connection: local
   roles:
+    - common
     - bash/alias
     - bash/git
 #    - bash/profile
