@@ -43,6 +43,7 @@ pip install -r _data/requirements.txt
 # Execute intallation
 ${LOGGER} "Executing ansible playbook"
 cd ansible
+ansible-playbook main.yml
 exit 0
 ${LOGGER_INFO} "Backing up files..."
 ${LOGGER_INFO} "A copy of your current files will be stored in ~/ with the extension .BAK.${TIMESTAMP}."
