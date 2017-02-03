@@ -38,8 +38,14 @@ else
 fi
 
 # Install pip requirements
-${LOGGER} "Installing python requirements via pip"
-pip install -r _data/requirements.txt
+if ( ansible --version > /dev/null 2>&1 )
+then
+  ${LOGGER} "ansible is already installed, continuing..."
+else
+  ${LOGGER} "Installing python requirements via pip"
+  pip install -r _data/requirements.txt
+fi
+
 # Execute intallation
 ${LOGGER} "Executing ansible playbook"
 cd ansible
