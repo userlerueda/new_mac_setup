@@ -15,10 +15,35 @@ __base="$(basename ${__file} .sh)"
 
 arg1="${1:-}"
 
-# Installer starts here
 TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
 LOGGER="echo $(date +"%Y-%m-%d %H:%M") "
 LOGGER_INFO="echo $(date +"%Y-%m-%d %H:%M") | INFO | "
+
+# Installer starts here
+# Validate homebrew is installed
+if ( brew --version > /dev/null 2>&1 )
+then
+  ${LOGGER} "Homebrew is already installed"
+else
+  ${LOGGER} "Homebrew is NOT installed, installing..."
+  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+fi
+# Validate pip is installed
+if ( pip --version > /dev/null 2>&1 )
+then
+  ${LOGGER} "pip is already installed"
+else
+  ${LOGGER} "pip is not installed, installing..."
+  brew install python
+fi
+
+# Install pip requirements
+${LOGGER} "Installing python requirements via pip"
+pip install -r _data/requirements.txt
+# Execute intallation
+${LOGGER} "Executing ansible playbook"
+cd ansible
+exit 0
 ${LOGGER_INFO} "Backing up files..."
 ${LOGGER_INFO} "A copy of your current files will be stored in ~/ with the extension .BAK.${TIMESTAMP}."
 if [ -e ~/.bash_git ]

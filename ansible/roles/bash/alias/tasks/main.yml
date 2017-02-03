@@ -1,0 +1,37 @@
+---
+
+- name: Add alias for ll
+  lineinfile:
+    dest: "{{ bash_alias }}"
+    line: alias ll="ls -ltr"
+    create: yes
+    state: "{{ desired_state }}"
+  tags:
+    - alias
+
+- name: Add alias for gbpurge
+  lineinfile:
+    dest: "{{ bash_alias }}"
+    line: alias gbpurge='git branch --merged | grep -Ev "(\*|master|develop|staging)" | xargs -n 1 git branch -d'
+    create: yes
+    state: "{{ desired_state }}"
+  tags:
+    - alias
+
+- name: Add alias for clean_config
+  lineinfile:
+    dest: "{{ bash_alias }}"
+    line: alias clean_config='egrep -v "(^#.*|^$)"'
+    create: yes
+    state: "{{ desired_state }}"
+  tags:
+    - alias
+
+- name: Add alias for mtr
+  lineinfile:
+    dest: "{{ bash_alias }}"
+    line: alias mtr='sudo mtr --o "L SRD NABWV IMXI" --show-ips'
+    create: yes
+    state: "{{ desired_state }}"
+  tags:
+    - alias
