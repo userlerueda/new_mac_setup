@@ -1,0 +1,18 @@
+---
+# Main playbook
+- hosts: localhost
+  gather_facts: yes
+  connection: local
+  roles:
+    - common
+    - bash/alias
+    - bash/git
+    - bash/profile
+#    - bash/profile
+#    - ssh/keys
+#    - ssh/config
+  tags:
+    - bash
+    - ssh
+  vars:
+    - desired_state: present
