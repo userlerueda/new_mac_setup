@@ -5,7 +5,7 @@
   connection: local
   roles:
     - bash/alias
-    - bash/profile
+#    - bash/profile
 #    - ssh/keys
 #    - ssh/config
   tags:
