@@ -1,0 +1,25 @@
+---
+
+- name: Add mappings to {{ home_dir }}{{ bash_profile }} for {{ bash_git }}
+  blockinfile:
+    dest: "{{ home_dir}}{{ bash_profile }}"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK for {{ bash_git }} #"
+    block: |
+      if [ -e {{ bash_git }} ]
+      then
+        source {{ bash_git }}
+      fi
+    create: yes
+    state: "{{ desired_state }}"
+
+- name: Add mappings to {{ home_dir }}{{ bash_profile }} for {{ bash_git }}
+  blockinfile:
+    dest: "{{ home_dir}}{{ bash_profile }}"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK for {{ bash_alias }} #"
+    block: |
+      if [ -e {{ bash_alias }} ]
+      then
+        source {{ bash_alias }}
+      fi
+    create: yes
+    state: "{{ desired_state }}"
