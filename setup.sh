@@ -50,11 +50,3 @@ fi
 ${LOGGER} "Executing ansible playbook"
 cd ansible
 ansible-playbook main.yml
-exit 0
-
-if [ -e ~/.bash_profile ]
-then
-   mv ~/.bash_profile ~/.bash_git.BAK.${TIMESTAMP}
-fi
-
-rsync .bash_profile ~/
