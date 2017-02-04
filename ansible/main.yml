@@ -4,16 +4,15 @@
   gather_facts: yes
   connection: local
   roles:
-    - common
-    - bash/alias
-    - bash/git
-    - bash/profile
-    - homebrew
+    - { role: common, tags: [ "common" ] }
+    - { role: bash/alias, tags: [ "bash", "alias" ] }
+    - { role: bash/git, tags: [ "bash", "git" ] }
+    - { role: bash/profile, tags: [ "bash", "profile" ] }
+    - { role: homebrew, tags: [ "homebrew" ] }
+    - { role: dock, tags: [ "dock" ] }
+    - { role: apps/iterm2, tags: [ "apps", "iterm2" ] }
 #    - bash/profile
 #    - ssh/keys
 #    - ssh/config
-  tags:
-    - bash
-    - ssh
   vars:
     - desired_state: present
