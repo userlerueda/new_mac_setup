@@ -1,13 +1,13 @@
 ---
 
-- name: Adds mtr package using homebrew
+- name: Adds homebrew packages
   homebrew:
-    name: mtr
+    name: "{{ item }}"
     state: latest
     update_homebrew: yes
-
-- name: Adds tree package using homebrew
-  homebrew:
-    name: tree
-    state: latest
-    update_homebrew: yes
+  with_items:
+    - mtr
+    - tree
+    - wget
+    - git
+    - dockutil
