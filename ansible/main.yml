@@ -11,6 +11,7 @@
     - { role: homebrew, tags: [ "homebrew" ] }
     - { role: dock, tags: [ "dock" ] }
     - { role: apps/iterm2, tags: [ "apps", "iterm2" ] }
+    - { role: apps/osx, tags: [ "apps", "osx" ] }
 #    - bash/profile
 #    - ssh/keys
 #    - ssh/config
