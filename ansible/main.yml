@@ -8,6 +8,7 @@
     - bash/alias
     - bash/git
     - bash/profile
+    - homebrew
 #    - bash/profile
 #    - ssh/keys
 #    - ssh/config
