@@ -1,0 +1,13 @@
+---
+
+- name: Adds mtr package using homebrew
+  homebrew:
+    name: mtr
+    state: latest
+    update_homebrew: yes
+
+- name: Adds tree package using homebrew
+  homebrew:
+    name: tree
+    state: latest
+    update_homebrew: yes
