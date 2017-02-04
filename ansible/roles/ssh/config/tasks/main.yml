@@ -1,0 +1,13 @@
+---
+
+- name: Disable StrictHostKeyCheck and UerKnownHostsFile
+  blockinfile:
+    dest: "{{ home_dir}}{{ ssh_config }}"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK for {{ ssh_config }} #"
+    block: |
+      Host *
+        StrictHostKeyChecking no
+        UserKnownHostsFile /dev/null
+    create: yes
+    mode: 0400
+    state: "{{ desired_state }}"

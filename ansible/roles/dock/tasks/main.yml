@@ -1,0 +1,8 @@
+---
+
+- name: Remove all unneeded Dock items
+  shell: dockutil --remove '{{ item }}'
+  ignore_errors: true
+  with_items: dockitems_to_remove
+  tags:
+    - dock

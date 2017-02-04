@@ -5,9 +5,9 @@
     dest: "{{ home_dir}}{{ bash_profile }}"
     marker: "# {mark} ANSIBLE MANAGED BLOCK for {{ bash_git }} #"
     block: |
-      if [ -e {{ bash_git }} ]
+      if [ -e {{ home_dir }}{{ bash_git }} ]
       then
-        source {{ bash_git }}
+        source {{ home_dir }}{{ bash_git }}
       fi
     create: yes
     state: "{{ desired_state }}"
@@ -17,9 +17,9 @@
     dest: "{{ home_dir}}{{ bash_profile }}"
     marker: "# {mark} ANSIBLE MANAGED BLOCK for {{ bash_alias }} #"
     block: |
-      if [ -e {{ bash_alias }} ]
+      if [ -e {{ home_dir }}{{ bash_alias }} ]
       then
-        source {{ bash_alias }}
+        source {{ home_dir }}{{ bash_alias }}
       fi
     create: yes
     state: "{{ desired_state }}"
