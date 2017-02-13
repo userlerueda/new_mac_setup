@@ -28,6 +28,16 @@ __version__ = "0.0.0"
 SCREEN_LOGGING_LEVEL = logging.INFO
 
 
+def stdout(message):
+    """
+    Outputs the message to stdout using formatter
+
+    """
+    print(str(datetime.now().strftime('%Y-%m-%d %H:%M:%S,%f')
+              [:-3]) + " - STDOUT - " + str(message))
+    return True
+
+
 def main(args):
     """
     main program
@@ -40,16 +50,6 @@ def main(args):
         list of args parsed by the script when executed
     """
     pass
-
-
-def stdout(message):
-    """
-    Outputs the message to stdout using formatter
-
-    """
-    print(str(datetime.now().strftime('%Y-%m-%d %H:%M:%S,%f')
-              [:-3]) + " - STDOUT - " + str(message))
-    return True
 
 
 if __name__ == "__main__":
