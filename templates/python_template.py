@@ -1,5 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import sys
+import logging
+from docopt import docopt
+from datetime import datetime
 
 """
 
@@ -15,20 +19,14 @@ Options:
 
 """
 
-__author__        = "Luis Rueda"
-__email__         = "lurueda@cisco.com"
-__copyright__     = "Cisco Systems, Inc."
-__status__        = "Development"   # Prototype, Development or Production
-__version__       = "0.0.0"
-
-import sys
-import logging
-import sys
-import os
-from docopt import docopt
-from datetime import datetime
+__author__ = "Luis Rueda"
+__email__ = "lurueda@cisco.com"
+__copyright__ = "Cisco Systems, Inc."
+__status__ = "Development"   # Prototype, Development or Production
+__version__ = "0.0.0"
 
 SCREEN_LOGGING_LEVEL = logging.INFO
+
 
 def main(args):
     """
@@ -43,6 +41,17 @@ def main(args):
     """
     pass
 
+
+def stdout(message):
+    """
+    Outputs the message to stdout using formatter
+
+    """
+    print(str(datetime.now().strftime('%Y-%m-%d %H:%M:%S,%f')
+              [:-3]) + " - STDOUT - " + str(message))
+    return True
+
+
 if __name__ == "__main__":
     # Setup the Logger
     logger = logging.getLogger()
@@ -54,15 +63,16 @@ if __name__ == "__main__":
     stream_handler.setFormatter(formatter)
     logger.addHandler(stream_handler)
 
-    #logger.critical('This is a critical message.')
-    #logger.error('This is an error message.')
-    #logger.warning('This is a warning message.')
-    #logger.info('This is an informative message.')
-    #logger.debug('This is a low-level debug message.')
-    #print(str(datetime.now().strftime('%Y-%m-%d %H:%M:%S,%f')[:-3]) + " - STDOUT - This is a stdout printed message.")
+    # logger.critical('This is a critical message.')
+    # logger.error('This is an error message.')
+    # logger.warning('This is a warning message.')
+    # logger.info('This is an informative message.')
+    # logger.debug('This is a low-level debug message.')
+    # stdout("This is a stdout printed message.")
 
     program_name = sys.argv[0]
-    args = docopt(__doc__.replace('{program}', program_name), version=__version__)
+    args = docopt(__doc__.replace(
+        '{program}', program_name), version=__version__)
 
     if args['--debug']:
         SCREEN_LOGGING_LEVEL = logging.DEBUG
