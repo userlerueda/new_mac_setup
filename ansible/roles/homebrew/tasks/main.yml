@@ -12,3 +12,10 @@
     - git
     - dockutil
     - autoenv
+    - graphviz
+    - ant
+
+- name: Adds Java via cask
+  homebrew_cask:
+    name: java
+    state: present
