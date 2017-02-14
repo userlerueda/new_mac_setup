@@ -16,42 +16,46 @@ Options:
 
 """
 
-__author__        = "Luis Rueda (userlerueda@gmail.com)"
-__email__         = "userlerueda@gmail.com"
-__copyright__     = "Luis Rueda (userlerueda@gmail.com)"
-__status__        = "Development"   # Prototype, Development or Production
-__version__       = "0.0.1"
+__author__ = "Luis Rueda (userlerueda@gmail.com)"
+__email__ = "userlerueda@gmail.com"
+__copyright__ = "Luis Rueda (userlerueda@gmail.com)"
+__status__ = "Development"   # Prototype, Development or Production
+__version__ = "0.0.3"
 
 import sys
 import logging
-import sys
 import os
 from docopt import docopt
 from datetime import datetime
 
 SCREEN_LOGGING_LEVEL = logging.INFO
 
+
+def stdout(message):
+    """
+    Outputs the message to stdout using formatter
+
+    :param message: string, message to be output to stdout
+    :return: Null
+    :raises None: raises no exceptions
+    """
+    print(str(datetime.now().strftime('%Y-%m-%d %H:%M:%S,%f')
+              [:-3]) + " - STDOUT - " + str(message))
+    return True
+
+
 def file_exists(dir, filename):
     """
-    Checks if a file exists
+    Checks if a specific file exists inside a directory
 
-    file_exists function checks if a given file exists in a specific directory
-
-    Parameters
-    ----------
-    dir : str
-        Directory specified from the current working directory
-    filename : str
-        Filename to be inspected in directory, it is case insensitive
-
-    Returns
-    -------
-    boolean
-        True if file exists
-        False if file does not exist
+    :param dir: directory where the file is to be looked
+    :param filename: name of the file to be looked for
+    :returns: boolean, True if file exists and False if it does not
+    :raises None: raises no exceptions
     """
     top_level_dir = dir
-    files = [f for f in os.listdir(top_level_dir) if os.path.isfile(os.path.join(top_level_dir, f))]
+    files = [f for f in os.listdir(top_level_dir)
+        if os.path.isfile(os.path.join(top_level_dir, f))]
     files = [element.lower() for element in files]
     logger.debug(files)
     if filename.lower() in files:
@@ -59,16 +63,14 @@ def file_exists(dir, filename):
     else:
         return False
 
+
 def main(args):
     """
-    main program
+    Main program to be executed
 
-    executes main program
-
-    Parameters
-    ----------
-    args : list
-        list of args parsed by the script when executed
+    :param args: list, list of args passed by script when executed
+    :returns: Null
+    :raises Null: raises no exceptions
     """
     if args["validate"]:
         if args["root"] or args["all"]:
@@ -86,7 +88,8 @@ def main(args):
             logger.info("travis tests OK")
 
     if args["display"] and args["top-level-dir"]:
-        print(str(datetime.now().strftime('%Y-%m-%d %H:%M:%S')[:-3]) + " - STDOUT - " + os.getcwd())
+        stdout(os.getcwd())
+
 
 if __name__ == "__main__":
     # Setup the Logger
@@ -99,15 +102,16 @@ if __name__ == "__main__":
     stream_handler.setFormatter(formatter)
     logger.addHandler(stream_handler)
 
-    #logger.critical('This is a critical message.')
-    #logger.error('This is an error message.')
-    #logger.warning('This is a warning message.')
-    #logger.info('This is an informative message.')
-    #logger.debug('This is a low-level debug message.')
-    #print(str(datetime.now().strftime('%Y-%m-%d %H:%M:%S,%f')[:-3]) + " - STDOUT - This is a stdout printed message.")
+    # logger.critical('This is a critical message.')
+    # logger.error('This is an error message.')
+    # logger.warning('This is a warning message.')
+    # logger.info('This is an informative message.')
+    # logger.debug('This is a low-level debug message.')
+    # stdout("This is a stdout printed message.")
 
     program_name = sys.argv[0]
-    args = docopt(__doc__.replace('{program}', program_name), version=__version__)
+    args = docopt(__doc__.replace(
+        '{program}', program_name), version=__version__)
 
     if args['--debug']:
         SCREEN_LOGGING_LEVEL = logging.DEBUG
