@@ -30,6 +30,17 @@ from datetime import datetime
 
 SCREEN_LOGGING_LEVEL = logging.INFO
 
+
+def stdout(message):
+    """
+    Outputs the message to stdout using formatter
+
+    """
+    print(str(datetime.now().strftime('%Y-%m-%d %H:%M:%S,%f')
+              [:-3]) + " - STDOUT - " + str(message))
+    return True
+
+
 def main(args):
     """
     main program
@@ -45,14 +56,14 @@ def main(args):
 
 if __name__ == "__main__":
     # Setup the Logger
-    logger = logging.getLogger()
-    logger.setLevel(logging.DEBUG)
-    formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
-
-    stream_handler = logging.StreamHandler()
-    stream_handler.setLevel(SCREEN_LOGGING_LEVEL)
-    stream_handler.setFormatter(formatter)
-    logger.addHandler(stream_handler)
+    # logger = logging.getLogger()
+    # logger.setLevel(logging.DEBUG)
+    # formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+    #
+    # stream_handler = logging.StreamHandler()
+    # stream_handler.setLevel(SCREEN_LOGGING_LEVEL)
+    # stream_handler.setFormatter(formatter)
+    # logger.addHandler(stream_handler)
 
     #logger.critical('This is a critical message.')
     #logger.error('This is an error message.')
