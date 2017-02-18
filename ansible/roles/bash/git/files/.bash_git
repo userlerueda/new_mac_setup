@@ -36,11 +36,17 @@ function is_on_git() {
   git rev-parse 2> /dev/null
 }
 
+function parse_git_status() {
+  [[ $(git status 2> /dev/null | tail -n1) != *"working tree clean"* ]] && echo " ±"
+  [[ $(git status 2> /dev/null | tail -n1) = *"working tree clean"* ]] && echo " ✔"
+}
+
+
 function parse_git_dirty() {
   [[ $(git status 2> /dev/null | tail -n1) != *"working tree clean"* ]] && echo "¬±"
 }
 
 function parse_git_branch() {
-  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
+  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_status)/"
 }
 export PS1="\[${ORANGE}\][\[${BOLD}${MAGENTA}\]\u \[${GREEN}\]\W\[${BOLD}\]\$(is_on_git && [[ -n \$(git branch 2> /dev/null) ]] && echo \":\")\[${PURPLE}\]\$(parse_git_branch)\[${RESET}\]\[${ORANGE}\]]\[${RESET}\]\$ "
