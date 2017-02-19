@@ -1,8 +1,9 @@
-New macOS Setup
-===============
+# New macOS Setup
 
 This repository will provide everything necessary to setup and get a new macOS going from scratch
 
-Author
-======
+# Author
 Luis Rueda <userlerueda@gmail.com>
+
+# Installation
+Execute `setup.sh` script and enjoy!
