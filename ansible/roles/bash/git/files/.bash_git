@@ -37,12 +37,19 @@ function is_on_git() {
 }
 
 function parse_git_status() {
-  [[ $(git status 2> /dev/null | tail -n1) != *"working tree clean"* ]] && echo " ±"
-  [[ $(git status 2> /dev/null | tail -n1) = *"working tree clean"* ]] && echo " ✔"
+  git_status=""
+  [[ $(git status 2> /dev/null | tail -n1) != *"working tree clean"* ]] && git_status=${git_status}"¬±"
+  [[ $(git status 2> /dev/null | grep "Your branch is") = *"behind"* ]] && git_status=${git_status}"↓"
+  [[ $(git status 2> /dev/null | grep "Your branch is") = *"ahead"* ]] && git_status=${git_status}"↑"
+  echo ${git_status}
+
 }
 
+function parse_git_remote() {
+  [[ $(git status 2> /dev/null | grep "Your branch is") = *"behind"* ]] && echo "↓"
+}
 
-function parse_git_dirty() {
+function parse_git_status_old() {
   [[ $(git status 2> /dev/null | tail -n1) != *"working tree clean"* ]] && echo "¬±"
 }
 
