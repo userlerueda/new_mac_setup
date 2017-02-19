@@ -37,11 +37,19 @@ function is_on_git() {
 }
 
 function parse_git_status() {
-  git_status=""
-  [[ $(git status 2> /dev/null | tail -n1) != *"working tree clean"* ]] && git_status=${git_status}"¬±"
-  [[ $(git status 2> /dev/null | grep "Your branch is") = *"behind"* ]] && git_status=${git_status}"↓"
-  [[ $(git status 2> /dev/null | grep "Your branch is") = *"ahead"* ]] && git_status=${git_status}"↑"
-  echo ${git_status}
+  git_prompt=""
+  git_status=$(git status)
+  [[ $(echo "${git_status}" | tail -n1) != *"working tree clean"* ]] && git_prompt=${git_prompt}"¬±"
+  if [[ $(echo "${git_status}" | grep "Your branch" | grep -E -o "(behind|ahead)") = "ahead" ]]
+  then
+    git_prompt=${git_prompt}"↑"
+    git_prompt=${git_prompt}$(echo "${git_status}" | grep "Your branch" | grep -E -o "([0-9]+)")
+  elif [[ $(echo "${git_status}" | grep "Your branch" | grep -E -o "(behind|ahead)") = "behind" ]]
+  then
+    git_prompt=${git_prompt}"↓"
+    git_prompt=${git_prompt}$(echo "${git_status}" | grep "Your branch" | grep -E -o "([0-9]+)")
+  fi
+  echo ${git_prompt}
 
 }
 
