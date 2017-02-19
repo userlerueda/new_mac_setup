@@ -38,7 +38,7 @@ function is_on_git() {
 
 function parse_git_status() {
   git_prompt=""
-  git_status=$(git status)
+  git_status=$(git status 2> /dev/null)
   [[ $(echo "${git_status}" | tail -n1) != *"working tree clean"* ]] && git_prompt=${git_prompt}"¬±"
   if [[ $(echo "${git_status}" | grep "Your branch" | grep -E -o "(behind|ahead)") = "ahead" ]]
   then
