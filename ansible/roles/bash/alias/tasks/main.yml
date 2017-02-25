@@ -35,3 +35,12 @@
     state: "{{ desired_state }}"
   tags:
     - alias
+
+- name: Add ncscli alias to {{ home_dir }}{{ bash_alias }}
+  lineinfile:
+    dest: "{{ home_dir }}{{ bash_alias }}"
+    line: alias ncscli='ncs_cli -u admin -C'
+    create: yes
+    state: "{{ desired_state }}"
+  tags:
+    - alias
