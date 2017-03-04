@@ -1,5 +1,10 @@
 ---
 
+- name: Adds Java via cask
+  homebrew_cask:
+    name: java
+    state: "{{ desired_state }}"
+
 - name: Adds homebrew packages
   homebrew:
     name: "{{ item }}"
@@ -14,8 +19,3 @@
     - autoenv
     - graphviz
     - ant
-
-- name: Adds Java via cask
-  homebrew_cask:
-    name: java
-    state: present
