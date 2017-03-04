@@ -1,2 +1,3 @@
 default_venv: default-py2
 documents_dir: ~/Documents
+nso_dir: /opt/cisco/nso/current

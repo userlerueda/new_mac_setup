@@ -36,6 +36,18 @@
     create: yes
     state: "{{ desired_state }}"
 
+- name: Add mappings to {{ home_dir }}{{ bash_profile }} for NSO
+  blockinfile:
+    dest: "{{ home_dir}}{{ bash_profile }}"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK for NSO #"
+    block: |
+      if [ -e {{ nso_dir }}/ncsrc ]
+      then
+        source {{ nso_dir }}/ncsrc
+      fi
+    create: yes
+    state: "{{ desired_state }}"
+
 - name: Add /usr/local/sbin to PATH in {{ home_dir }}{{ bash_profile }}
   lineinfile:
     dest: "{{ home_dir}}{{ bash_profile }}"
