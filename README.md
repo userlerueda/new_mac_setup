@@ -1,3 +1,5 @@
+https://travis-ci.org/userlerueda/new_mac_setup.svg?branch=master
+
 # New macOS Setup
 This repository will provide everything necessary to setup and get a new macOS going from scratch
 
