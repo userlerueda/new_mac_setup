@@ -1,0 +1,10 @@
+brew_packages:
+  - mtr
+  - tree
+  - wget
+  - git
+  - dockutil
+  - autoenv
+  - graphviz
+brew_packages_java:
+  - ant
