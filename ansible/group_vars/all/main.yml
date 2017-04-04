@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 brew_packages:
   - mtr
   - tree
@@ -8,3 +9,8 @@ brew_packages:
   - graphviz
 brew_packages_java:
   - ant
+=======
+default_venv: default-py2
+documents_dir: ~/Documents
+nso_dir: /opt/cisco/nso/current
+>>>>>>> 34e42612c0ab8e700c6fd7c380d4a1a6e662ec4a

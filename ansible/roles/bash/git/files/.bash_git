@@ -36,11 +36,32 @@ function is_on_git() {
   git rev-parse 2> /dev/null
 }
 
-function parse_git_dirty() {
+function parse_git_status() {
+  git_prompt=""
+  git_status=$(git status 2> /dev/null)
+  [[ $(echo "${git_status}" | tail -n1) != *"working tree clean"* ]] && git_prompt=${git_prompt}"¬±"
+  if [[ $(echo "${git_status}" | grep "Your branch" | grep -E -o "(behind|ahead)") = "ahead" ]]
+  then
+    git_prompt=${git_prompt}"↑"
+    git_prompt=${git_prompt}$(echo "${git_status}" | grep "Your branch" | grep -E -o "([0-9]+)")
+  elif [[ $(echo "${git_status}" | grep "Your branch" | grep -E -o "(behind|ahead)") = "behind" ]]
+  then
+    git_prompt=${git_prompt}"↓"
+    git_prompt=${git_prompt}$(echo "${git_status}" | grep "Your branch" | grep -E -o "([0-9]+)")
+  fi
+  echo ${git_prompt}
+
+}
+
+function parse_git_remote() {
+  [[ $(git status 2> /dev/null | grep "Your branch is") = *"behind"* ]] && echo "↓"
+}
+
+function parse_git_status_old() {
   [[ $(git status 2> /dev/null | tail -n1) != *"working tree clean"* ]] && echo "¬±"
 }
 
 function parse_git_branch() {
-  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
+  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_status)/"
 }
 export PS1="\[${ORANGE}\][\[${BOLD}${MAGENTA}\]\u \[${GREEN}\]\W\[${BOLD}\]\$(is_on_git && [[ -n \$(git branch 2> /dev/null) ]] && echo \":\")\[${PURPLE}\]\$(parse_git_branch)\[${RESET}\]\[${ORANGE}\]]\[${RESET}\]\$ "

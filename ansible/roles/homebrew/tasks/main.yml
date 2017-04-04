@@ -1,10 +1,20 @@
 ---
 
+<<<<<<< HEAD
 - name: Adds homebrew packages that do not require java
+=======
+- name: Adds Java via cask
+  homebrew_cask:
+    name: java
+    state: "{{ desired_state }}"
+
+- name: Adds homebrew packages
+>>>>>>> 34e42612c0ab8e700c6fd7c380d4a1a6e662ec4a
   homebrew:
     name: "{{ brew_packages }}"
     state: latest
     update_homebrew: yes
+<<<<<<< HEAD
 
 - name: Adds Java via cask
   homebrew_cask:
@@ -16,3 +26,14 @@
     name: "{{ brew_packages_java }}"
     state: latest
     update_homebrew: yes
+=======
+  with_items:
+    - mtr
+    - tree
+    - wget
+    - git
+    - dockutil
+    - autoenv
+    - graphviz
+    - ant
+>>>>>>> 34e42612c0ab8e700c6fd7c380d4a1a6e662ec4a
