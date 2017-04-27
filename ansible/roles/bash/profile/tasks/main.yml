@@ -11,6 +11,9 @@
       fi
     create: yes
     state: "{{ desired_state }}"
+    tags:
+      - bash_profile
+      - git
 
 - name: Add mappings to {{ home_dir }}{{ bash_profile }} for {{ default_venv }}
   blockinfile:
@@ -23,6 +26,9 @@
       fi
     create: yes
     state: "{{ desired_state }}"
+    tags:
+      - bash_profile
+      - virtualenv
 
 - name: Add mappings to {{ home_dir }}{{ bash_profile }} for {{ bash_alias }}
   blockinfile:
@@ -35,6 +41,9 @@
       fi
     create: yes
     state: "{{ desired_state }}"
+    tags:
+      - alias
+      - bash_profile
 
 - name: Add mappings to {{ home_dir }}{{ bash_profile }} for NSO
   blockinfile:
@@ -47,6 +56,9 @@
       fi
     create: yes
     state: "{{ desired_state }}"
+    tags:
+      - bash_profile
+      - nso
 
 - name: Add /usr/local/sbin to PATH in {{ home_dir }}{{ bash_profile }}
   lineinfile:
@@ -63,6 +75,9 @@
     line: 'export PATH=/usr/local/bin:$PATH'
     create: yes
     state: "{{ desired_state }}"
+    tags:
+      - bash_profile
+      - path
 
 - name: Add ~/bin to PATH in {{ home_dir }}{{ bash_profile }}
   lineinfile:
@@ -71,3 +86,6 @@
     line: 'export PATH=~/bin:$PATH'
     create: yes
     state: "{{ desired_state }}"
+    tags:
+      - bash_profile
+      - path
