@@ -35,6 +35,7 @@
     state: "{{ desired_state }}"
   tags:
     - alias
+    - mtr
 
 - name: Add ncscli alias to {{ home_dir }}{{ bash_alias }}
   lineinfile:
@@ -44,3 +45,14 @@
     state: "{{ desired_state }}"
   tags:
     - alias
+    - nso
+
+- name: Add ansible-ssh alias to {{ home_dir }}{{ bash_alias }}
+  lineinfile:
+    dest: "{{ home_dir }}{{ bash_alias }}"
+    line: alias ansible-ssh='~/Documents/github3/AS-Community/vms-as-tools/ansible-ssh.sh'
+    create: yes
+    state: "{{ desired_state }}"
+  tags:
+    - alias
+    - ansible-ssh
