@@ -56,3 +56,14 @@
   tags:
     - alias
     - ansible-ssh
+
+- name: Add badge alias to {{ home_dir }}{{ bash_alias }}
+  lineinfile:
+    dest: "{{ home_dir }}{{ bash_alias }}"
+    line: alias badge='iterm2_set_user_var iterm2badge'
+    create: yes
+    state: "{{ desired_state }}"
+  tags:
+    - alias
+    - badge
+    - iterm2
