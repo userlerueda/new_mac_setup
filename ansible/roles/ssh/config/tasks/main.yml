@@ -11,3 +11,28 @@
     create: yes
     mode: 0400
     state: "{{ desired_state }}"
+
+- name: Hosts
+  blockinfile:
+    dest: "{{ home_dir}}{{ ssh_config }}"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK for {{ ssh_config }} #"
+    block: |
+      # VTS Claro
+      ## 172.22.36.71 - N5KTRIARA1
+      ## 172.22.36.72 - N5KTRIARA2
+      ## 172.22.36.73 - N5KTRIARA3
+      ## 172.22.36.74 - N5KTRIARA4
+      ## 172.18.78.164 - VTC01
+      ## 172.18.78.165 - VTC02
+      ## 172.18.78.166 - VTC HA
+
+      Host 172.22.36.*
+        User usrtelmex
+        UserKnownHostsFile /dev/null
+        StrictHostKeyChecking no
+        ServerAliveInterval 60
+        TCPKeepAlive yes
+        ProxyCommand ssh admin@172.18.78.166 nc %h %p
+    create: yes
+    mode: 0400
+    state: "{{ desired_state }}"
