@@ -2,7 +2,7 @@
 
 - name: Add mappings to {{ home_dir }}{{ bash_profile }} for {{ bash_git }}
   blockinfile:
-    dest: "{{ home_dir}}{{ bash_profile }}"
+    path: "{{ home_dir}}{{ bash_profile }}"
     marker: "# {mark} ANSIBLE MANAGED BLOCK for {{ bash_git }} #"
     block: |
       if [ -e {{ home_dir }}{{ bash_git }} ]
@@ -11,13 +11,13 @@
       fi
     create: yes
     state: "{{ desired_state }}"
-    tags:
-      - bash_profile
-      - git
+  tags:
+    - bash_profile
+    - git
 
 - name: Add mappings to {{ home_dir }}{{ bash_profile }} for {{ default_venv }}
   blockinfile:
-    dest: "{{ home_dir}}{{ bash_profile }}"
+    path: "{{ home_dir}}{{ bash_profile }}"
     marker: "# {mark} ANSIBLE MANAGED BLOCK for {{ default_venv }} #"
     block: |
       if [ -e {{ documents_dir }}/virtualenv/{{ default_venv }}/bin/activate ]
@@ -26,13 +26,13 @@
       fi
     create: yes
     state: "{{ desired_state }}"
-    tags:
-      - bash_profile
-      - virtualenv
+  tags:
+    - bash_profile
+    - virtualenv
 
 - name: Add mappings to {{ home_dir }}{{ bash_profile }} for {{ bash_alias }}
   blockinfile:
-    dest: "{{ home_dir}}{{ bash_profile }}"
+    path: "{{ home_dir}}{{ bash_profile }}"
     marker: "# {mark} ANSIBLE MANAGED BLOCK for {{ bash_alias }} #"
     block: |
       if [ -e {{ home_dir }}{{ bash_alias }} ]
@@ -41,13 +41,13 @@
       fi
     create: yes
     state: "{{ desired_state }}"
-    tags:
-      - alias
-      - bash_profile
+  tags:
+    - alias
+    - bash_profile
 
 - name: Add mappings to {{ home_dir }}{{ bash_profile }} for NSO
   blockinfile:
-    dest: "{{ home_dir}}{{ bash_profile }}"
+    path: "{{ home_dir}}{{ bash_profile }}"
     marker: "# {mark} ANSIBLE MANAGED BLOCK for NSO #"
     block: |
       if [ -e {{ nso_dir }}/ncsrc ]
@@ -56,13 +56,13 @@
       fi
     create: yes
     state: "{{ desired_state }}"
-    tags:
-      - bash_profile
-      - nso
+  tags:
+    - bash_profile
+    - nso
 
 - name: Add /usr/local/sbin to PATH in {{ home_dir }}{{ bash_profile }}
   lineinfile:
-    dest: "{{ home_dir}}{{ bash_profile }}"
+    path: "{{ home_dir}}{{ bash_profile }}"
     insertafter: '^export PATH.*'
     line: 'export PATH=/usr/local/sbin:$PATH'
     create: yes
@@ -70,22 +70,33 @@
 
 - name: Add /usr/local/bin to PATH in {{ home_dir }}{{ bash_profile }}
   lineinfile:
-    dest: "{{ home_dir}}{{ bash_profile }}"
+    path: "{{ home_dir}}{{ bash_profile }}"
     insertafter: '^export PATH.*'
     line: 'export PATH=/usr/local/bin:$PATH'
     create: yes
     state: "{{ desired_state }}"
-    tags:
-      - bash_profile
-      - path
+  tags:
+    - bash_profile
+    - path
 
 - name: Add ~/bin to PATH in {{ home_dir }}{{ bash_profile }}
   lineinfile:
-    dest: "{{ home_dir}}{{ bash_profile }}"
+    path: "{{ home_dir}}{{ bash_profile }}"
     insertafter: '^export PATH.*'
     line: 'export PATH=~/bin:$PATH'
     create: yes
     state: "{{ desired_state }}"
-    tags:
-      - bash_profile
-      - path
+  tags:
+    - bash_profile
+    - path
+
+- name: Add ~/.node_modules_global/bin to PATH in {{ home_dir }}{{ bash_profile }}
+  lineinfile:
+    path: "{{ home_dir}}{{ bash_profile }}"
+    insertafter: '^export PATH.*'
+    line: 'export PATH="$HOME/.node_modules_global/bin:$PATH"'
+    create: yes
+    state: "{{ desired_state }}"
+  tags:
+    - bash_profile
+    - path
