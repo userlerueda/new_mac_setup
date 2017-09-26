@@ -14,5 +14,8 @@
     - { role: apps/iterm2, tags: [ "apps", "iterm2" ] }
     - { role: apps/osx, tags: [ "apps", "osx" ] }
     - { role: ssh/config, tags: [ "ssh", "config" ] }
+
+    # TODO: Create a link for .atom ln -s ~/Google\ Drive/Settings/Atom ~/.atom
+
   vars:
     - desired_state: present
