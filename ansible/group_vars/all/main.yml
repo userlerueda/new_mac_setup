@@ -8,8 +8,11 @@ brew_packages:
   - graphviz
   - ant
   - node
-npm:
+
+npm_packages:
   - gulp
+  - browser-sync
+
 default_venv: default-py2
 documents_dir: ~/Documents
 nso_dir: /opt/cisco/nso/current

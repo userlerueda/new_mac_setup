@@ -1,0 +1,11 @@
+---
+
+- name: Adds "browser-sync" node.js package
+  npm:
+    name: browser-sync
+    global: yes
+
+- name: Adds "gulp" node.js package
+  npm:
+    name: gulp
+    global: yes

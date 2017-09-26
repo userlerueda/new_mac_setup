@@ -9,6 +9,7 @@
     - { role: bash/git, tags: [ "bash", "git" ] }
     - { role: bash/profile, tags: [ "bash", "profile" ] }
     - { role: homebrew, tags: [ "homebrew" ] }
+    - { role: npm, tags: [ "npm" ]}
     - { role: dock, tags: [ "dock" ] }
     - { role: apps/iterm2, tags: [ "apps", "iterm2" ] }
     - { role: apps/osx, tags: [ "apps", "osx" ] }
