@@ -9,3 +9,8 @@
   npm:
     name: gulp
     global: yes
+
+- name: Adds "http-server" node.js package
+  npm:
+    name: http-server
+    global: yes
