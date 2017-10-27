@@ -14,5 +14,6 @@
     - { role: apps/iterm2, tags: [ "apps", "iterm2" ] }
     - { role: apps/osx, tags: [ "apps", "osx" ] }
     - { role: ssh/config, tags: [ "ssh", "config" ] }
+    - { role: scripts, tags: ["scripts"] }
   vars:
     - desired_state: present
