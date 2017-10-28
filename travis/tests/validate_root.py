@@ -4,7 +4,8 @@
 """
 
 Usage:
-  {program} [options] validate (root|travis|yml|all) <file>
+  {program} [options] validate (root|travis|all)
+  {program} [options] validate yml <file>
   {program} [options] display top-level-dir
   {program} (-h | --help)
   {program} (-v | --version)
@@ -85,7 +86,7 @@ def main(args):
     :raises Null: raises no exceptions
     """
     if args["validate"]:
-        if args["yml"] or args["all"]:
+        if args["yml"]:
             logger.debug("validating {}".format(args["<file>"]))
             read_yaml_file(args["<file>"])
             logger.info("Validated {}".format(args["<file>"]))
