@@ -22,19 +22,16 @@ LOGGER_DEBUG="echo $(date +"%Y-%m-%d %H:%M") | DEBUG | "
 
 arg1="${1:-}"
 
-# Validate README.md exists
-if [ -e ${__dir}/../../README.md ]
-then
-   echo "README.md exists, everything Ok so far"
-else
-   echo "README.md does not exists, failing"
-   exit 1
-fi
-
-yaml_files=$(find . -name "*yml")
-for yml_file in ${yaml_files}
+${LOGGER_INFO} "Fixing iCal..."
+${LOGGER_INFO} "Closing iCal.."
+for pid in $(ps -fe | grep Calendar | grep -v "grep Calendar" | awk '{ print $2 }')
 do
-  ${__dir}/validate_root.py validate yml ${yml_file}
+  kill -9 ${pid}
 done
-
-#ls -1a ${__dir}/../../ | grep -v "^.$" | grep -v "^..$"
+${LOGGER_INFO} "iCal closed"
+${LOGGER_INFO} "Removing cache files"
+rm -rf '~/Library/Calendars/Calendar\ Cache*'
+${LOGGER_INFO} "Cache files removed"
+${LOGGER_INFO} "Reopening calendar app..."
+open /Applications/Calendar.app
+${LOGGER_INFO} "Calendar app reopened"

@@ -1,0 +1,7 @@
+---
+
+- name: Copy fix_ical.sh file to ~/bin
+  copy:
+    src: fix_ical.sh
+    dest: "~/bin/"
+    mode: 0755

@@ -5,6 +5,11 @@
     name: java
     state: "{{ desired_state }}"
 
+- name: Adds CheatSheet via cask
+  homebrew_cask:
+    name: cheatsheet
+    state: "{{ desired_state }}"
+
 - name: Adds homebrew packages
   homebrew:
     name: "{{ brew_packages }}"

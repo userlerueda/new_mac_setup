@@ -4,7 +4,7 @@
 """
 
 Usage:
-  {program} [options] validate (root|travis|all)
+  {program} [options] validate (root|travis|yml|all) <file>
   {program} [options] display top-level-dir
   {program} (-h | --help)
   {program} (-v | --version)
@@ -25,6 +25,7 @@ __version__ = "0.0.3"
 import sys
 import logging
 import os
+import yaml
 from docopt import docopt
 from datetime import datetime
 
@@ -42,6 +43,17 @@ def stdout(message):
     print(str(datetime.now().strftime('%Y-%m-%d %H:%M:%S,%f')
               [:-3]) + " - STDOUT - " + str(message))
     return True
+
+
+def read_yaml_file(file_name):
+    module_logger = logging.getLogger('main.read_yaml')
+    with open(file_name, 'r') as stream:
+        try:
+            yaml_config = yaml.load(stream)
+            return yaml_config
+
+        except yaml.YAMLError as exc:
+            module_logger.error(exc)
 
 
 def file_exists(dir, filename):
@@ -73,6 +85,10 @@ def main(args):
     :raises Null: raises no exceptions
     """
     if args["validate"]:
+        if args["yml"] or args["all"]:
+            logger.debug("validating {}".format(args["<file>"]))
+            read_yaml_file(args["<file>"])
+            logger.info("Validated {}".format(args["<file>"]))
         if args["root"] or args["all"]:
             if not file_exists("./", "README.md"):
                 logger.error("README.md does not exist!")
