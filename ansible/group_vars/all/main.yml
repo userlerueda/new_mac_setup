@@ -8,7 +8,7 @@ brew_packages:
   - graphviz
   - ant
   - node
-
+  - pandoc
 npm_packages:
   - gulp
   - browser-sync
