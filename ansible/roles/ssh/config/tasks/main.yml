@@ -3,11 +3,12 @@
 - name: Disable StrictHostKeyCheck and UerKnownHostsFile
   blockinfile:
     dest: "{{ home_dir}}{{ ssh_config }}"
-    marker: "# {mark} ANSIBLE MANAGED BLOCK for {{ ssh_config }} #"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK All for {{ ssh_config }} #"
     block: |
       Host *
         StrictHostKeyChecking no
         UserKnownHostsFile /dev/null
+        KexAlgorithms +diffie-hellman-group1-sha1
     create: yes
     mode: 0400
     state: "{{ desired_state }}"
@@ -15,7 +16,7 @@
 - name: Hosts
   blockinfile:
     dest: "{{ home_dir}}{{ ssh_config }}"
-    marker: "# {mark} ANSIBLE MANAGED BLOCK for {{ ssh_config }} #"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK Claro for {{ ssh_config }} #"
     block: |
       # VTS Claro
       ## 172.22.36.71 - N5KTRIARA1
