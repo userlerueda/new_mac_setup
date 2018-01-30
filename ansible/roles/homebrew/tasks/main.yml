@@ -9,6 +9,7 @@
   homebrew_cask:
     name: cheatsheet
     state: "{{ desired_state }}"
+  ignore_errors: yes
 
 - name: Adds homebrew packages
   homebrew:
