@@ -100,3 +100,24 @@
   tags:
     - bash_profile
     - path
+
+- name: Adds SSH Socks function to {{ home_dir }}{{ bash_profile }}
+  blockinfile:
+    path: "{{ home_dir}}{{ bash_profile }}"
+    insertafter: '^export PATH.*'
+    block: |
+      function ssh-socks {
+        tabset "SOCKS Proxy on localhost:8080\nssh $@"
+        ssh -D 8080 $@
+        tabset " "
+      }
+      if [ -e {{ nso_dir }}/ncsrc ]
+      then
+        source {{ nso_dir }}/ncsrc
+      fi
+    create: yes
+    state: "{{ desired_state }}"
+  tags:
+    - bash_profile
+    - function
+    - socks
