@@ -6,9 +6,11 @@
     marker: "# {mark} ANSIBLE MANAGED BLOCK All for {{ ssh_config }} #"
     block: |
       Host *
+        HostKeyAlgorithms +ssh-dss
         StrictHostKeyChecking no
         UserKnownHostsFile /dev/null
         KexAlgorithms +diffie-hellman-group1-sha1
+        Ciphers +aes256-cbc
     create: yes
     mode: 0400
     state: "{{ desired_state }}"
