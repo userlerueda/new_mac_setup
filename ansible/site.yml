@@ -1,3 +1,4 @@
+#!/usr/bin/env ansible-playbook
 ---
 # Main playbook
 - hosts: localhost
