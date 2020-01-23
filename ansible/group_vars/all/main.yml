@@ -9,6 +9,10 @@ brew_packages:
   - ant
   - node
   - pandoc
+  - plantuml
+  - jfrog-cli-go
+  - python3
+
 npm_packages:
   - gulp
   - browser-sync
