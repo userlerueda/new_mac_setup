@@ -5,3 +5,8 @@ defaults write com.apple.dock wvous-tr-corner -int 6
 defaults write com.apple.dock wvous-bl-corner -int 10
 defaults write com.apple.dock wvous-br-corner -int 0
 ~~~
+
+# iterm2
+~~~
+defaults write com.googlecode.iterm2 AdjustWindowForFontSizeChange 0
+~~~
